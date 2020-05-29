@@ -3,7 +3,7 @@
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-		<title>宝贝,我爱你，到永久</title>
+		<title>宝贝,我爱你，Forever</title>
         <meta name="keywords" content="">
 		<meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -158,7 +158,7 @@
 			let startDate = new Date("2020-01-30 20:00")
 			let endDate = new Date();
 			let diff = endDate.getTime() - startDate.getTime();
-			// $("#days").text(typeof endDate.getTime())
+			$("#days").text(endDate.getTime())
 			var dayDiff = Math.floor(diff / (24 * 3600 * 1000));//计算出相差天数
 			var leave1=diff%(24*3600*1000) //计算天数后剩余的毫秒数
 			var hours=Math.floor(leave1/(3600*1000))//计算出小时数
@@ -168,7 +168,7 @@
 			//计算相差秒数
 			var leave3=leave2%(60*1000) //计算分钟数后剩余的毫秒数
 			var seconds=Math.round(leave3/1000)
-			$("#days").text(dayDiff)
+			// $("#days").text(dayDiff)
 			$("#hours").text(hours)
 			$("#minutes").text(minutes)
 			$("#seconds").text(seconds)

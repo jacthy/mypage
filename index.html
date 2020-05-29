@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<title>宝贝,我爱你，到永久</title>
+        <meta name="keywords" content="">
+		<meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+		<link rel="stylesheet" href="./Template2/bootstrap.min.css">
+		<!-- <link rel="stylesheet" href="./Template2_files/font-awesome.min.css"> -->
+		<!-- <link rel="stylesheet" href="./Template2_files/animate.min.css"> -->
+		<link rel="stylesheet" href="./Template2/templatemo-style.css">
+		<style type="text/css">
+			#vlaue{
+				border: none;
+			    border-radius: 0px;
+			    box-shadow: none;
+			    height: 50px;
+			    margin-top: 60px;
+			    transition: all 0.4s ease-in-out;
+			    display: block;
+    			width: 100%;
+    			padding: 6px 12px;
+			    font-size: 14px;
+			    line-height: 1.42857143;
+			    color: #555;
+			    background-color: #fff;
+			    background-image: none;
+			}
+			#start{
+				background: #7AD03A;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+    height: 50px;
+    margin-top: 60px;
+    -webkit-appearance: button;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+        box-sizing: border-box;
+            margin: 0;
+    font: inherit;
+    font-family: inherit;
+			}	
+			.count_result{
+				font-size: large;
+				    line-height: 60px;
+			}	
+			#result{
+				color: white
+			}
+		</style>
+	</head>
+<body style="">
+</div>
+	
+	<div id="countdown">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="wow bounceIn" data-wow-delay="0.9s">Darl<small>in</small>g</h1>
+					<h2 class="element">
+						<span class="sub-element">亲爱的宝贝.</span>
+						<span class="sub-element">感谢你的出现!</span>
+                        <span class="sub-element">我们已经相识</span>
+					</h2>
+                    
+                    <!-- Edit js/init.js file for the date and time -->
+                    
+					<ul class="countdown">
+						<li>
+							<span class="days" id="days"></span>
+							<h3>天</h3>
+						</li>
+						<li>
+							<span class="hours" id="hours"></span>
+							<h3>小时</h3>
+						</li>
+						<li>
+							<span class="minutes" id="minutes"></span>
+							<h3>分钟</h3>
+						</li>
+						<li>
+							<span class="seconds" id="seconds"></span>
+							<h3>秒</h3>
+						</li>	
+					</ul>
+					<!-- subscribe form -->
+					<form  >
+						<div class="col-md-3 col-sm-3"></div>
+						<div class="col-md-4 col-sm-4">
+							<input id="vlaue" class="form-control" placeholder="Baby 复制到这里来吧">
+						</div>
+						<div class="col-md-2 col-sm-2">
+							<input type="button" id="start" class="form-control" value="开始">
+						</div>
+						<span style="clear: both;"></span>
+						
+					</form>
+						
+					<!-- subscribe form -->
+				</div>
+				<div class="count_result">
+							<span>这里是结果：</span>
+							<span ><a id="result">0</a></span>
+						</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$("#start").click(function(event){
+			let text =  $("#vlaue").val();
+			let regex = /\((.+?)\)/g;
+	   		let options = text.match(regex)
+	   		let strArr = [];
+	   		let sum = 0;
+	   		for (let i = 0; i < options.length ; i++) {
+	   			let numstr = options[i].substring(1,options[i].length-1);
+	   			if(parseInt(numstr) == NaN){
+	   				continue;
+	   			}
+	   			strArr.push(numstr);
+	   			sum += parseInt(numstr);
+	   		}
+	   		$("#result").text(strArr.join("+")+"="+sum)
+	   		// console.log();
+			event.stopPropagation(); 
+		})
+		
+   		// console.log(options);
+		setAllDiff()
+		setInterval(setAllDiff,1000)
+
+		function setAllDiff(){
+			// return;
+			let startDate = new Date("2020-01-30 20:00")
+			let endDate = new Date();
+			let diff = endDate.getTime() - startDate.getTime();
+
+			var dayDiff = Math.floor(diff / (24 * 3600 * 1000));//计算出相差天数
+			var leave1=diff%(24*3600*1000) //计算天数后剩余的毫秒数
+			var hours=Math.floor(leave1/(3600*1000))//计算出小时数
+			//计算相差分钟数
+			var leave2=leave1%(3600*1000) //计算小时数后剩余的毫秒数
+			var minutes=Math.floor(leave2/(60*1000))//计算相差分钟数
+			//计算相差秒数
+			var leave3=leave2%(60*1000) //计算分钟数后剩余的毫秒数
+			var seconds=Math.round(leave3/1000)
+			$("#days").text(dayDiff)
+			$("#hours").text(hours)
+			$("#minutes").text(minutes)
+			$("#seconds").text(seconds)
+		}
+	</script>
+
+</body></html>

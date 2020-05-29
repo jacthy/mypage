@@ -119,8 +119,14 @@
 	<script type="text/javascript">
 		$("#start").click(function(event){
 			let text =  $("#vlaue").val();
-			let regex = /\((.+?)\)/g;
-	   		let options = text.match(regex)
+			console.log(text);
+			let regex = /\（(.+?)\）/g;
+	   		let options = text.match(regex);
+	   		if(options == null){
+	   			regex = /\((.+?)\)/g;
+	   			options = text.match(regex);
+	   		}
+	   		// console.log(options);
 	   		let strArr = [];
 	   		let sum = 0;
 	   		for (let i = 0; i < options.length ; i++) {
@@ -145,7 +151,7 @@
 			let startDate = new Date("2020-01-30 20:00")
 			let endDate = new Date();
 			let diff = endDate.getTime() - startDate.getTime();
-			$("#days").text(typeof endDate.getTime())
+			// $("#days").text(typeof endDate.getTime())
 			var dayDiff = Math.floor(diff / (24 * 3600 * 1000));//计算出相差天数
 			var leave1=diff%(24*3600*1000) //计算天数后剩余的毫秒数
 			var hours=Math.floor(leave1/(3600*1000))//计算出小时数
@@ -155,7 +161,7 @@
 			//计算相差秒数
 			var leave3=leave2%(60*1000) //计算分钟数后剩余的毫秒数
 			var seconds=Math.round(leave3/1000)
-			// $("#days").text(dayDiff)
+			$("#days").text(dayDiff)
 			$("#hours").text(hours)
 			$("#minutes").text(minutes)
 			$("#seconds").text(seconds)

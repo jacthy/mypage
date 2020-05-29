@@ -55,7 +55,9 @@
 				    line-height: 60px;
 			}	
 			#result{
-				color: white
+				color: white;
+				background-color: transparent;
+   				border: 0px;
 			}
 		</style>
 	</head>
@@ -110,7 +112,8 @@
 				</div>
 				<div class="count_result">
 							<span>这里是结果：</span>
-							<span ><a id="result">0</a></span>
+							<input id="result" value="0">
+							<!-- <span ><a id="result">0</a></span> -->
 						</div>
 			</div>
 		</div>
@@ -119,25 +122,29 @@
 	<script type="text/javascript">
 		$("#start").click(function(event){
 			let text =  $("#vlaue").val();
-			console.log(text);
 			let regex = /\（(.+?)\）/g;
 	   		let options = text.match(regex);
 	   		if(options == null){
 	   			regex = /\((.+?)\)/g;
 	   			options = text.match(regex);
 	   		}
-	   		// console.log(options);
-	   		let strArr = [];
-	   		let sum = 0;
-	   		for (let i = 0; i < options.length ; i++) {
-	   			let numstr = options[i].substring(1,options[i].length-1);
-	   			if(parseInt(numstr) == NaN){
-	   				continue;
-	   			}
-	   			strArr.push(numstr);
-	   			sum += parseInt(numstr);
+	   		if(options != null){
+	   			let strArr = [];
+		   		let sum = 0;
+		   		for (let i = 0; i < options.length ; i++) {
+		   			let numstr = options[i].substring(1,options[i].length-1);
+		   			if(parseInt(numstr) == NaN){
+		   				continue;
+		   			}
+		   			strArr.push(numstr);
+		   			sum += parseInt(numstr);
+		   		}
+		   		let t = strArr.join("+")+"="+sum ;
+		   		$("#result").val(t);
+				// console.log($("#result").val());
 	   		}
-	   		$("#result").text(strArr.join("+")+"="+sum)
+	   		// console.log(options);
+	   		
 	   		// console.log();
 			event.stopPropagation(); 
 		})

@@ -72,7 +72,7 @@
 					<h2 class="element">
 						<span class="sub-element">亲爱的宝贝.</span>
 						<span class="sub-element">感谢你的出现!</span>
-                        <span class="sub-element">我们已经相识</span>
+                        <span class="sub-element">我们已经在一起</span>
 					</h2>
                     
                     <!-- Edit js/init.js file for the date and time -->
@@ -111,15 +111,31 @@
 					<!-- subscribe form -->
 				</div>
 				<div class="count_result">
-							<span>这里是结果：</span>
-							<input id="result" value="0">
-							<!-- <span ><a id="result">0</a></span> -->
+							<span>baby，结果在这：</span>
+							<!-- <input id="result" value="0"> -->
+							<!-- <span>copy</span> -->
+							<span ><a id="result">0</a></span>
+						</div>
+						<div>
+							<div style="width: 30%;display: inline-block;"></div>
+							<div style="width: 30%;display: inline-block;">
+								<input style="background: #7AD03A;border-radius: 5px;color: white;" type="button" id="copy" class="form-control" value="baby,点我复制吧">
+							</div>
+							<div style="width: 30%;display: inline-block;"></div>
+
 						</div>
 			</div>
 		</div>
 	</div>
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript">
+	$("#copy").click(function(){
+		var val = document.getElementById('result');
+		// console.log(val)
+		window.getSelection().selectAllChildren(val);
+		document.execCommand("Copy");
+		alert("宝贝，可以了，我爱你哦！"+"("+val.text+")")
+	})
 		$("#start").click(function(event){
 			let text =  $("#vlaue").val();
 			let regex = /\（(.+?)\）/g;
@@ -141,6 +157,7 @@
 		   		}
 		   		let t = strArr.join("+")+"="+sum ;
 		   		$("#result").val(t);
+		   		$("#result").text(t);
 				// console.log($("#result").val());
 	   		}
 	   		// console.log(options);

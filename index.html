@@ -145,7 +145,7 @@
 			let startDate = new Date("2020-01-30 20:00")
 			let endDate = new Date();
 			let diff = endDate.getTime() - startDate.getTime();
-
+			$("#days").text(dayDiff==NaN)
 			var dayDiff = Math.floor(diff / (24 * 3600 * 1000));//计算出相差天数
 			var leave1=diff%(24*3600*1000) //计算天数后剩余的毫秒数
 			var hours=Math.floor(leave1/(3600*1000))//计算出小时数

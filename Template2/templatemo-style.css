@@ -30,7 +30,7 @@ h2 {
 .element
 	{
 		position: relative;
-		height: 60px;
+		/* height: 60px; */
 	}
 /* end element */
 
@@ -137,7 +137,7 @@ h2 {
 	{
 		font-weight: 300;
 		font-size: 18px;
-		padding-bottom: 40px;
+		/* padding-bottom: 40px; */
 	}
 #countdown small
 	{
@@ -179,7 +179,7 @@ ul.countdown li h3
 		border-radius: 0px;
 		box-shadow: none;
 		height: 50px;
-		margin-top: 60px;
+		margin-top: 15px;
 		transition: all 0.4s ease-in-out;
 	}
 #countdown input[type="submit"]

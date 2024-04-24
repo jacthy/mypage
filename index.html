@@ -180,7 +180,13 @@
 			// window.getSelection().selectAllChildren(val);
 			document.execCommand("Copy");
 			document.body.removeChild(textEle)
-			alert("宝贝，可以了，我爱你哦！" + "(" + finalVal + ")")
+			let tmpVal = ""
+			if (finalVal.length>1000){
+				tmpVal = "太长了，这里也不展示了，已经复制好了，你直接粘贴就可以了"
+			}else{
+				tmpVal=finalVal
+			}
+			alert("宝贝，可以了，我爱你哦！" + "(" + tmpVal + ")")
 		})
 		$("#start").click(function (event) {
 			let text = $("#vlaue").val();

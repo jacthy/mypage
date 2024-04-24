@@ -15,6 +15,15 @@
 	<link rel="stylesheet" href="./Template2/bootstrap.min.css">
 	<link rel="stylesheet" href="./Template2/templatemo-style.css">
 	<style type="text/css">
+		 .cont {
+            width: 180px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            float: left;
+        }
+
 		#vlaue {
 			border: none;
 			border-radius: 0px;
@@ -37,12 +46,14 @@
 		}
 
 		#start,
-		#start-sort {
+		#start-sort,
+		#start-add {
 			font-size: large !important;
 		}
 
 		#start,
-		#start-sort {
+		#start-sort,
+		#start-add {
 			background: #7AD03A;
 			color: #ffffff;
 			transition: all 0.3s ease;
@@ -123,6 +134,20 @@
 						<div class="col-md-1 col-sm-1" style="padding-left: 0px;">
 							<input type="button" id="start-sort" class="form-control" value="排列">
 						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="col-md-3 col-sm-3"></div>
+								<div class="col-md-2 col-sm-1">
+									<textarea id="vlaue-for-add" class="form-control" placeholder="需要加的数据"></textarea>
+								</div>
+								<div class="col-md-2 col-sm-1">
+									<input id="vlaue-for-add-num" class="form-control" placeholder="要加多少"></input>
+								</div>
+								<div class="col-md-1 col-sm-1" style="padding-left: 0px;">
+									<input type="button" id="start-add" class="form-control" value="开始加">
+								</div>
+							</div>
+						</div>
 						<span style="clear: both;"></span>
 					</form>
 					<!-- subscribe form -->
@@ -145,12 +170,17 @@
 	</div>
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript">
+		var finalVal = ""
 		$("#copy").click(function () {
-			var val = document.getElementById('result');
-			// console.log(val)
-			window.getSelection().selectAllChildren(val);
+			// var val = document.getElementById('result');
+			let textEle = document.createElement('textarea')
+			textEle.value=finalVal
+			document.body.appendChild(textEle);
+			textEle.select();
+			// window.getSelection().selectAllChildren(val);
 			document.execCommand("Copy");
-			alert("宝贝，可以了，我爱你哦！" + "(" + val.text + ")")
+			document.body.removeChild(textEle)
+			alert("宝贝，可以了，我爱你哦！" + "(" + finalVal + ")")
 		})
 		$("#start").click(function (event) {
 			let text = $("#vlaue").val();
@@ -172,6 +202,7 @@
 					sum += parseInt(numstr);
 				}
 				let t = strArr.join("+") + "=" + sum;
+				finalVal = t
 				$("#result").val(t);
 				$("#result").text(t);
 			}
@@ -191,10 +222,35 @@
 				});
 				res = [...new Set(res)]
 				let val = res.sort().join(" ")
+				finalVal = val
 				$("#result").val(val);
 				$("#result").text(val);
 			}
 
+		})
+
+		$("#start-add").click(function (event) {
+			let text = $("#vlaue-for-add").val();
+			if (text != "") {
+				let reg = /\d+$/;
+				let addNum = $("#vlaue-for-add-num").val();
+				let textList = text.split('\n')
+				let addNumInt = parseInt(addNum, 10)
+				let newText = ""
+				textList.forEach(val => {
+					const matches = val.match(reg);
+					if (matches) {
+						lastNum = parseInt(matches[0], 10)
+						val = val.replace(reg, lastNum + addNumInt)
+					}
+					newText = newText + val + "\n"
+				})
+				finalVal = newText
+				$("#result").val("不展示,直接点复制");
+				$("#result").text("不展示,直接点复制");
+			}
+
+			// text.split("\n")
 		})
 
 		setAllDiff()

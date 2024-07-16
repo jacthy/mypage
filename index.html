@@ -190,12 +190,8 @@
 		})
 		$("#start").click(function (event) {
 			let text = $("#vlaue").val();
-			let regex = /\（(.+?)\）/g;
+			let regex = /[\（\(](.+?)[\）\)]/g;
 			let options = text.match(regex);
-			if (options == null) {
-				regex = /\((.+?)\)/g;
-				options = text.match(regex);
-			}
 			if (options != null) {
 				let strArr = [];
 				let sum = 0;
